@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+screenshot.png
+screen.png
+test_exif.jpg

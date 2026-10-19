@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo Sentinel // CTF Seguridad Informática</title>
+  
+  <!-- Hoja de estilos autónoma 100% local -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Metadatos de Desarrollo -->
+  <meta name="author" content="Ángel & Josué">
+  <meta name="challenge-version" content="2.0-PREVIO2">
+  <meta name="description" content="Desafío CTF de Criptografía y Seguridad Informática para 3 Analistas">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- RETO 2: COMENTARIO OCULTO EN CÓDIGO FUENTE -->
+  <!-- [CONFIDENCIAL - CLAVE DE ACCESO CASILLA 2] -->
+  <!-- CLAVE_CASILLA_2: DEV_KEY_F12_2026          -->
+  <!-- ========================================== -->
+
+  <!-- Barra Superior de Estado -->
+  <header class="top-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="status-dot"></div>
+        <div>
+          <div class="brand-subtitle">CTF // SEGURIDAD INFORMÁTICA</div>
+          <h1 class="brand-title">
+            PROTOCOLO SENTINEL <span class="tag-badge">PREVIO 2</span>
+          </h1>
+        </div>
+      </div>
+      
+      <div class="header-meta">
+        <div class="badge-author">
+          Diseñado por: <strong>Ángel &amp; Josué</strong>
+        </div>
+        <div id="master-status-badge" class="badge-locked">
+          SISTEMA BLOQUEADO
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Central -->
+  <main class="main-content">
+    
+    <!-- Banner de Misión / Briefing -->
+    <div class="briefing-card">
+      <div>
+        <div class="mission-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          DESAFÍO PARA EL EQUIPO RIVAL (3 ANALISTAS)
+        </div>
+        <h2 class="briefing-title">Desbloqueo del Nodo Central</h2>
+        <p class="briefing-desc">
+          El servidor de seguridad ha quedado protegido por 4 cerraduras criptográficas. Vuestro objetivo es inspeccionar el código, analizar la evidencia forense y descifrar el criptograma para completar las <strong style="color: var(--neon-cyan);">4 casillas de autenticación</strong>.
+        </p>
+      </div>
+
+      <!-- Barra de progreso general -->
+      <div class="progress-box">
+        <div class="progress-header">
+          <span style="color: var(--text-dim);">PROGRESO:</span>
+          <span id="master-progress-text" style="color: var(--neon-emerald); font-weight: bold;">0/4 Retos (0%)</span>
+        </div>
+        <div class="progress-track">
+          <div id="master-progress-bar" class="progress-bar"></div>
+        </div>
+        <div style="font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 8px;">
+          Completa las 4 casillas para obtener la bandera.
+        </div>
+      </div>
+    </div>
+
+    <!-- Las 4 Casillas de Reto -->
+    <div class="challenges-grid">
+
+      <!-- ============================================== -->
+      <!-- CASILLA 1: REGALADA (PREVIO2)                 -->
+      <!-- ============================================== -->
+      <section id="card-reto-1" class="challenge-card">
+        <div>
+          <div class="card-top">
+            <span class="card-num-tag">CASILLA #01 // FASE DE CALIBRACIÓN</span>
+            <div id="status-reto-1">
+              <span class="card-status-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Bloqueado
+              </span>
+            </div>
+          </div>
+
+          <h3 class="card-title">
+            <span class="card-step-circle">1</span>
+            Identificador Académico (Regalada)
+          </h3>
+
+          <div class="hint-box">
+            <div class="hint-title" style="color: var(--neon-emerald);">
+              💡 PISTA 100% DIRECTA:
+            </div>
+            <p>
+              Para calibrar la conexión del equipo, introduce el identificador oficial de esta prueba. Es exactamente la palabra:
+              <strong style="color: var(--neon-emerald); font-family: var(--font-mono); background: #0b1324; padding: 2px 6px; border-radius: 4px; border: 1px solid #1e293b;">PREVIO2</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-reto-1" class="input-label">RESPUESTA CASILLA 1:</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="input-reto-1" 
+              placeholder="Escribe PREVIO2..."
+              class="text-input"
+            />
+            <button id="btn-reto-1" onclick="checkAnswer(1)" class="btn-verify">Verificar</button>
+          </div>
+          <div id="feedback-reto-1" class="feedback-msg"></div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- CASILLA 2: CÓDIGO FUENTE (F12)                 -->
+      <!-- ============================================== -->
+      <section id="card-reto-2" class="challenge-card">
+        <div>
+          <div class="card-top">
+            <span class="card-num-tag">CASILLA #02 // RECONOCIMIENTO WEB</span>
+            <div id="status-reto-2">
+              <span class="card-status-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Bloqueado
+              </span>
+            </div>
+          </div>
+
+          <h3 class="card-title">
+            <span class="card-step-circle">2</span>
+            Secretos en el Código Fuente (F12)
+          </h3>
+
+          <div class="hint-box">
+            <div class="hint-title" style="color: var(--neon-cyan);">
+              🕵️‍♂️ PISTA DE INSPECCIÓN:
+            </div>
+            <p style="margin-bottom: 6px;">
+              Los ingenieros dejaron notas confidenciales en el código fuente. Presiona la tecla <strong style="color: var(--neon-cyan); font-family: var(--font-mono); background: #0b1324; padding: 2px 5px; border-radius: 4px; border: 1px solid #1e293b;">F12</strong> (o clic derecho &rarr; <em>Inspeccionar</em>) y revisa:
+            </p>
+            <ul style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); padding-left: 18px; line-height: 1.6;">
+              <li>Comentarios HTML ocultos en <code style="color: var(--neon-cyan);">&lt;!-- ... --&gt;</code></li>
+              <li>Mensajes emitidos en la pestaña <strong>Console</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-reto-2" class="input-label">CLAVE DE ACCESO F12:</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="input-reto-2" 
+              placeholder="Ingresa la clave encontrada en F12..."
+              class="text-input"
+            />
+            <button id="btn-reto-2" onclick="checkAnswer(2)" class="btn-verify">Verificar</button>
+          </div>
+          <div id="feedback-reto-2" class="feedback-msg"></div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- CASILLA 3: METADATOS EXIF DE LA IMAGEN         -->
+      <!-- ============================================== -->
+      <section id="card-reto-3" class="challenge-card">
+        <div>
+          <div class="card-top">
+            <span class="card-num-tag">CASILLA #03 // ANÁLISIS FORENSE</span>
+            <div id="status-reto-3">
+              <span class="card-status-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Bloqueado
+              </span>
+            </div>
+          </div>
+
+          <h3 class="card-title">
+            <span class="card-step-circle" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">3</span>
+            Metadatos &amp; Evidencia Forense
+          </h3>
+
+          <div class="hint-box">
+            <div class="hint-title" style="color: #c084fc;">
+              🔬 EVIDENCIA INTERCEPTADA:
+            </div>
+            <p style="margin-bottom: 8px;">
+              Descarga la imagen a tu computador y examina sus <strong>Metadatos EXIF</strong> (en Windows: <em>Clic derecho &rarr; Propiedades &rarr; Detalles</em>, o con exiftool). Busca el campo <em>Descripción / Copyright</em>:
+            </p>
+
+            <div class="image-thumbnail-box" onclick="openImageModal()">
+              <img src="assets/evidencia_lab.jpg" alt="Evidencia Forense - Metadatos EXIF" />
+              <div class="image-thumbnail-overlay">
+                <div class="btn-overlay">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  Clic para Ver / Descargar Imagen
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-reto-3" class="input-label">CLAVE DE LOS METADATOS EXIF:</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="input-reto-3" 
+              placeholder="Ingresa la clave encontrada en EXIF..."
+              class="text-input"
+            />
+            <button id="btn-reto-3" onclick="checkAnswer(3)" class="btn-verify">Verificar</button>
+          </div>
+          <div id="feedback-reto-3" class="feedback-msg"></div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- CASILLA 4: CRIPTOGRAFÍA - CIFRADO HILL         -->
+      <!-- ============================================== -->
+      <section id="card-reto-4" class="challenge-card">
+        <div>
+          <div class="card-top">
+            <span class="card-num-tag">CASILLA #04 // CRIPTOGRAFÍA CLÁSICA</span>
+            <div id="status-reto-4">
+              <span class="card-status-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Bloqueado
+              </span>
+            </div>
+          </div>
+
+          <h3 class="card-title">
+            <span class="card-step-circle" style="background: rgba(245, 158, 11, 0.15); color: var(--neon-amber);">4</span>
+            Cifrado Hill (Matriz 2x2)
+          </h3>
+
+          <div class="hint-box">
+            <div class="hint-title" style="color: var(--neon-amber);">
+              🔐 CRIPTOGRAMA INTERCEPTADO:
+            </div>
+
+            <div class="cipher-data-bar">
+              <div>
+                <span style="color: var(--text-dim);">Criptograma:</span>
+                <strong style="color: var(--neon-amber); letter-spacing: 2px;">VOKC</strong>
+              </div>
+              <div>
+                <span style="color: var(--text-dim);">Clave K:</span>
+                <span style="color: var(--neon-cyan);">[ [3, 3], [2, 5] ]</span>
+              </div>
+            </div>
+
+            <!-- Desplegable de Ayuda -->
+            <details style="margin-top: 8px;">
+              <summary style="cursor: pointer; font-family: var(--font-mono); font-size: 11px; color: var(--neon-cyan); outline: none;">
+                ▶ ¿Cómo descifrar el Cifrado Hill? (Pistas y Matriz Inversa)
+              </summary>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 8px; border-top: 1px solid #1e293b; padding-top: 8px; line-height: 1.5;">
+                <p>1. Alfabeto estándar (mod 26): A=0, B=1, ..., Z=25.</p>
+                <p>2. Criptograma: V=21, O=14 | K=10, C=2.</p>
+                <p>3. Matriz Inversa calculada: <strong style="color: var(--neon-emerald);">K⁻¹ = [ [15, 17], [20, 9] ]</strong> mod 26.</p>
+                <p style="color: var(--text-dim); font-style: italic; margin-top: 4px;">
+                  Multiplica K⁻¹ por cada par mod 26 o usa un decodificador Hill online. Resulta en una palabra de 4 letras.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-reto-4" class="input-label">PALABRA DESCIFRADA (4 LETRAS):</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="input-reto-4" 
+              placeholder="Ingresa la palabra descifrada..."
+              maxlength="10"
+              class="text-input"
+            />
+            <button id="btn-reto-4" onclick="checkAnswer(4)" class="btn-verify">Verificar</button>
+          </div>
+          <div id="feedback-reto-4" class="feedback-msg"></div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        Proyecto Académico: Ciberseguridad &bull; Diseñado por <strong style="color: #cbd5e1;">Ángel &amp; Josué</strong>
+      </div>
+      <div>
+        Hash Integrity Mode: <span style="color: var(--neon-emerald);">SHA-256 Verifier Active</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- MODAL DE VICTORIA (OCULTO POR DEFECTO)         -->
+  <!-- ============================================== -->
+  <div id="victory-modal" class="modal-backdrop hidden" style="display: none;">
+    <div class="modal-window victory">
+      <div class="trophy-circle">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path>
+          <path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path>
+          <path d="M4 22h16"></path>
+          <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path>
+        </svg>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--neon-emerald); font-weight: 700; letter-spacing: 1px;">
+        ¡MISIÓN CUMPLIDA!
+      </div>
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: #fff; margin: 4px 0 10px 0;">
+        ¡Bandera Capturada con Éxito!
+      </h3>
+
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+        ¡Felicitaciones al equipo de analistas! Habéis desbloqueado con éxito los 4 vectores del reto: Calibración, Inspección del DOM, Análisis Forense y Criptografía Hill.
+      </p>
+
+      <div class="flag-box">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">
+          BANDERA OFICIAL (THE FLAG):
+        </div>
+        <div class="flag-text">
+          FLAG{PREVIO2_F12_FORENSIC_HILL_SUCCESS}
+        </div>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); margin-bottom: 20px;">
+        Desafío creado para la clase de Seguridad Informática por:<br>
+        <strong style="color: var(--neon-cyan);">Ángel y Josué</strong>
+      </div>
+
+      <div class="modal-btn-row">
+        <button id="copy-flag-btn" onclick="copyFlag()" class="btn-primary">
+          Copiar Bandera
+        </button>
+        <button onclick="closeVictoryModal()" class="btn-secondary">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL DE VISOR DE IMAGEN (OCULTO POR DEFECTO)  -->
+  <!-- ============================================== -->
+  <div id="image-modal" class="modal-backdrop hidden" style="display: none;" onclick="closeImageModal()">
+    <div class="modal-window image-view" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #c084fc;">VISOR FORENSE // ARCHIVO DE EVIDENCIA</div>
+          <h4 style="font-size: 14px; font-weight: 700; color: #fff;">Evidencia Interceptada</h4>
+        </div>
+        <button onclick="closeImageModal()" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; padding: 4px;">
+          ✕
+        </button>
+      </div>
+
+      <img src="assets/evidencia_lab.jpg" alt="Evidencia Forense Ampliada" class="modal-image-preview" />
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+        <div>
+          Pista: Descarga la imagen y revisa Propiedades &rarr; Detalles (EXIF) en tu computador.
+        </div>
+        <a href="assets/evidencia_lab.jpg" download="evidencia_lab.jpg" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+          Descargar Archivo Original
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script principal de validación y lógica -->
+  <script src="script.js"></script>
+</body>
+</html>
