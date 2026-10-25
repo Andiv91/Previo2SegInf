@@ -67,13 +67,13 @@ draw.text((65, 715), "HASH SHA-256 INTEGRIDAD: e3b0c44298fc1c149afbf4c8996fb9242
 # Prepare EXIF tags
 exif = img.getexif()
 # 0x010E: ImageDescription
-exif[270] = "CLAVE_RETO_3: EXIF_FORENSE_2026"
+exif[270] = "EXIF_FORENSE_2026"
 # 0x013B: Artist
 exif[315] = "Angel y Josue - Seguridad Informatica"
 # 0x0131: Software
 exif[305] = "ForensicSentinel Analysis Suite v2.6"
 # 0x8298: Copyright
-exif[33432] = "Clave Nodo 3: EXIF_FORENSE_2026"
+exif[33432] = "EXIF_FORENSE_2026"
 
 img.save(img_path, "jpeg", exif=exif, quality=95)
 print("SUCCESS: Forensic image created at:", img_path)

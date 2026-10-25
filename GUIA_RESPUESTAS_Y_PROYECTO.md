@@ -15,7 +15,7 @@ La plataforma está diseñada específicamente para que un equipo rival de 3 ana
 * **Criptografía clásica (Cifrado Hill con matrices $2 \times 2$).**
 * **Funciones Hash unidireccionales (SHA-1 y SHA-256).**
 * **Análisis forense digital y extracción de metadatos (EXIF).**
-* **Auditoría de seguridad web (Inspección del DOM y de la Consola F12).**
+* **Auditoría de seguridad web (Inspección del código fuente con F12).**
 * **Arquitectura Cliente/Servidor Cloud con persistencia de auditoría en Neon PostgreSQL y despliegue en Render.**
 
 La interfaz restringe el acceso al sistema mediante **4 casillas de autenticación**. Al completar satisfactoriamente los 4 vectores, el sistema autovalida la solución, dispara efectos sonoros sintetizados nativamente, despliega lluvia de confeti virtual y entrega la bandera oficial de la victoria (`The Flag`).
@@ -108,7 +108,7 @@ Para evitar esto y aplicar la teoría de **Hashes Criptográficos Unidireccional
 
 ### 🟢 Casilla 1: Calibración Académica
 * **Objetivo:** Asegurar que el equipo rival entienda la mecánica de entrada antes de avanzar a los desafíos complejos.
-* **Pista:** La tarjeta indica textualmente: *"Para calibrar la conexión del equipo, introduce el identificador oficial de esta prueba. Es exactamente la palabra: PREVIO2"*.
+* **Pista:** La tarjeta indica: *"Para calibrar la conexión, introduce el identificador oficial de esta prueba. Revisa el nombre que aparece en la cabecera de la página."*
 * **Respuesta:** `PREVIO2`  
 * **Hash SHA-256:** `44298a92b897ce38aaa79c49c4995fb7f834da2f639cb7b59061632206ec7296`
 
@@ -116,21 +116,20 @@ Para evitar esto y aplicar la teoría de **Hashes Criptográficos Unidireccional
 
 ### 🔵 Casilla 2: Reconocimiento Web & F12
 * **Objetivo:** Simular una auditoría de seguridad frontend (Web Pentesting), donde desarrolladores descuidados dejan comentarios con credenciales o mensajes en la consola.
-* **Pista:** La tarjeta invita a presionar `F12` o hacer clic derecho $\rightarrow$ *Inspeccionar*.
+* **Pista:** La tarjeta indica: *"Revisa su código fuente con F12."*
 * **Procedimiento de Resolución:**
-  1. El rival abre las herramientas de desarrollo del navegador (`F12`).
-  2. En la pestaña **Elements**, al inicio del documento HTML, encuentran el comentario:
+  1. El rival abre las herramientas de desarrollo del navegador (`F12`) o hace clic derecho $\rightarrow$ *Inspeccionar*.
+  2. En la pestaña **Elements**, al inicio del documento HTML, encuentran un bloque de comentarios con datos aparentemente de build y configuración:
      ```html
      <!-- ========================================== -->
-     <!-- RETO 2: COMENTARIO OCULTO EN CÓDIGO FUENTE -->
-     <!-- [CONFIDENCIAL - CLAVE DE ACCESO CASILLA 2] -->
-     <!-- CLAVE_CASILLA_2: DEV_KEY_F12_2026          -->
+     <!-- build=2.0.3 rev=7c1e0a sum=9f2c4b1e        -->
+     <!-- cfg.a=QVJDSElWT19ERVZfMjAyNQ==             -->
+     <!-- ak3L 0Qx9 rT7m pZ2b vN8s hY4e uA1d gF6c    -->
+     <!-- mW3r bT8k x9Qp  DEV_KEY_F12_2026  nE5j q2Wv -->
+     <!-- Lk0z Vu7s hD1t oR9g cX4a jB6y fS3p ew8n    -->
      <!-- ========================================== -->
      ```
-  3. En la pestaña **Console**, al cargarse la página se emite automáticamente el log estilizado:
-     ```text
-     >>> CLAVE DE LA CASILLA 2: DEV_KEY_F12_2026
-     ```
+  3. La clave está en texto plano en la línea `mW3r bT8k x9Qp DEV_KEY_F12_2026 nE5j q2Wv`. El valor `cfg.a` es un señuelo: decodifica a `ARCHIVO_DEV_2025`, no es la respuesta.
 * **Respuesta:** `DEV_KEY_F12_2026`  
 * **Hash SHA-256:** `f702c2ea8122e9b588d2ecbeb313300a6153a21ad0f4bdc8a6acdd8e36a4b6cd`
 
@@ -138,14 +137,14 @@ Para evitar esto y aplicar la teoría de **Hashes Criptográficos Unidireccional
 
 ### 🟣 Casilla 3: Análisis Forense & Metadatos EXIF
 * **Objetivo:** Evaluar la capacidad de los estudiantes para inspeccionar la metadata no visible de los archivos multimedia (estándar EXIF).
-* **Pista:** La tarjeta muestra la tarjeta de evidencia y un botón para descargar el archivo original [evidencia_lab.jpg](file:///C:/Users/mater/Documents/TrabajosWeb/SegInform/assets/evidencia_lab.jpg).
+* **Pista:** La tarjeta indica: *"Descarga la imagen y examina sus Metadatos EXIF"*, con un botón para descargar el archivo original [evidencia_lab.jpg](file:///C:/Users/mater/Documents/TrabajosWeb/SegInform/assets/evidencia_lab.jpg).
 * **Procedimiento de Resolución:**
   1. El analista descarga la imagen `evidencia_lab.jpg` a su computador.
   2. En Windows: Hace clic derecho sobre la imagen $\rightarrow$ **Propiedades** $\rightarrow$ pestaña **Detalles**.
-  3. En Linux/Mac/Terminal: Ejecuta `exiftool evidencia_lab.jpg` o `strings evidencia_lab.jpg | grep CLAVE`.
-  4. Los campos **Descripción** y **Copyright** contienen la clave inyectada por script:
-     - *ImageDescription:* `CLAVE_RETO_3: EXIF_FORENSE_2026`
-     - *Copyright:* `Clave Nodo 3: EXIF_FORENSE_2026`
+  3. En Linux/Mac/Terminal: Ejecuta `exiftool evidencia_lab.jpg` o `strings evidencia_lab.jpg | grep EXIF`.
+  4. Los campos **Descripción** y **Copyright** contienen la clave, sin prefijos:
+     - *ImageDescription:* `EXIF_FORENSE_2026`
+     - *Copyright:* `EXIF_FORENSE_2026`
      - *Artist:* `Angel y Josue - Seguridad Informatica`
 * **Respuesta:** `EXIF_FORENSE_2026`  
 * **Hash SHA-256:** `83772f07995a63edcc7f4249002cc2326075638887b8c691f4515c430174efda`
