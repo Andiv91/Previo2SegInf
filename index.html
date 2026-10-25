@@ -16,9 +16,11 @@
 <body>
 
   <!-- ========================================== -->
-  <!-- RETO 2: COMENTARIO OCULTO EN CÓDIGO FUENTE -->
-  <!-- [CONFIDENCIAL - CLAVE DE ACCESO CASILLA 2] -->
-  <!-- CLAVE_CASILLA_2: DEV_KEY_F12_2026          -->
+  <!-- build=2.0.3 rev=7c1e0a sum=9f2c4b1e        -->
+  <!-- cfg.a=QVJDSElWT19ERVZfMjAyNQ==             -->
+  <!-- ak3L 0Qx9 rT7m pZ2b vN8s hY4e uA1d gF6c    -->
+  <!-- mW3r bT8k x9Qp  DEV_KEY_F12_2026  nE5j q2Wv -->
+  <!-- Lk0z Vu7s hD1t oR9g cX4a jB6y fS3p ew8n    -->
   <!-- ========================================== -->
 
   <!-- Barra Superior de Estado -->
@@ -83,7 +85,7 @@
     <div class="challenges-grid">
 
       <!-- ============================================== -->
-      <!-- CASILLA 1: REGALADA (PREVIO2)                 -->
+      <!-- CASILLA 1: IDENTIFICADOR                      -->
       <!-- ============================================== -->
       <section id="card-reto-1" class="challenge-card">
         <div>
@@ -102,16 +104,15 @@
 
           <h3 class="card-title">
             <span class="card-step-circle">1</span>
-            Identificador Académico (Regalada)
+            Identificador Académico
           </h3>
 
           <div class="hint-box">
             <div class="hint-title" style="color: var(--neon-emerald);">
-              💡 PISTA 100% DIRECTA:
+              💡 PISTA:
             </div>
             <p>
-              Para calibrar la conexión del equipo, introduce el identificador oficial de esta prueba. Es exactamente la palabra:
-              <strong style="color: var(--neon-emerald); font-family: var(--font-mono); background: #0b1324; padding: 2px 6px; border-radius: 4px; border: 1px solid #1e293b;">PREVIO2</strong>.
+              Para calibrar la conexión, introduce el identificador oficial de esta prueba. Revisa el nombre que aparece en la cabecera de la página.
             </p>
           </div>
         </div>
@@ -122,7 +123,7 @@
             <input 
               type="text" 
               id="input-reto-1" 
-              placeholder="Escribe PREVIO2..."
+              placeholder="Escribe el identificador..."
               class="text-input"
             />
             <button id="btn-reto-1" onclick="checkAnswer(1)" class="btn-verify">Verificar</button>
@@ -158,13 +159,9 @@
             <div class="hint-title" style="color: var(--neon-cyan);">
               🕵️‍♂️ PISTA DE INSPECCIÓN:
             </div>
-            <p style="margin-bottom: 6px;">
-              Los ingenieros dejaron notas confidenciales en el código fuente. Presiona la tecla <strong style="color: var(--neon-cyan); font-family: var(--font-mono); background: #0b1324; padding: 2px 5px; border-radius: 4px; border: 1px solid #1e293b;">F12</strong> (o clic derecho &rarr; <em>Inspeccionar</em>) y revisa:
+            <p>
+              Los ingenieros dejaron notas confidenciales en esta página. Revisa su código fuente con <strong style="color: var(--neon-cyan); font-family: var(--font-mono); background: #0b1324; padding: 2px 5px; border-radius: 4px; border: 1px solid #1e293b;">F12</strong>.
             </p>
-            <ul style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); padding-left: 18px; line-height: 1.6;">
-              <li>Comentarios HTML ocultos en <code style="color: var(--neon-cyan);">&lt;!-- ... --&gt;</code></li>
-              <li>Mensajes emitidos en la pestaña <strong>Console</strong></li>
-            </ul>
           </div>
         </div>
 
@@ -211,7 +208,7 @@
               🔬 EVIDENCIA INTERCEPTADA:
             </div>
             <p style="margin-bottom: 8px;">
-              Descarga la imagen a tu computador y examina sus <strong>Metadatos EXIF</strong> (en Windows: <em>Clic derecho &rarr; Propiedades &rarr; Detalles</em>, o con exiftool). Busca el campo <em>Descripción / Copyright</em>:
+              Descarga la imagen y examina sus <strong>Metadatos EXIF</strong>:
             </p>
 
             <div class="image-thumbnail-box" onclick="openImageModal()">
@@ -286,22 +283,17 @@
             <!-- Desplegable de Ayuda -->
             <details style="margin-top: 8px;">
               <summary style="cursor: pointer; font-family: var(--font-mono); font-size: 11px; color: var(--neon-cyan); outline: none;">
-                ▶ ¿Cómo descifrar el Cifrado Hill? (Pistas y Matriz Inversa)
+                ▶ Pista
               </summary>
               <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 8px; border-top: 1px solid #1e293b; padding-top: 8px; line-height: 1.5;">
-                <p>1. Alfabeto estándar (mod 26): A=0, B=1, ..., Z=25.</p>
-                <p>2. Criptograma: V=21, O=14 | K=10, C=2.</p>
-                <p>3. Matriz Inversa calculada: <strong style="color: var(--neon-emerald);">K⁻¹ = [ [15, 17], [20, 9] ]</strong> mod 26.</p>
-                <p style="color: var(--text-dim); font-style: italic; margin-top: 4px;">
-                  Multiplica K⁻¹ por cada par mod 26 o usa un decodificador Hill online. Resulta en una palabra de 4 letras.
-                </p>
+                <p>Trabaja en mod 26 (A=0, ..., Z=25) y usa la inversa de la matriz K.</p>
               </div>
             </details>
           </div>
         </div>
 
         <div>
-          <label for="input-reto-4" class="input-label">PALABRA DESCIFRADA (4 LETRAS):</label>
+          <label for="input-reto-4" class="input-label">PALABRA DESCIFRADA:</label>
           <div class="input-group">
             <input 
               type="text" 
@@ -400,10 +392,7 @@
 
       <img src="assets/evidencia_lab.jpg" alt="Evidencia Forense Ampliada" class="modal-image-preview" />
 
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
-        <div>
-          Pista: Descarga la imagen y revisa Propiedades &rarr; Detalles (EXIF) en tu computador.
-        </div>
+      <div style="display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
         <a href="assets/evidencia_lab.jpg" download="evidencia_lab.jpg" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
           Descargar Archivo Original
         </a>

@@ -270,19 +270,10 @@ function closeImageModal() {
 
 // Inicialización de eventos al cargar el DOM
 document.addEventListener('DOMContentLoaded', () => {
-  // Pistas en consola para el Reto 2 (F12)
+  // Mensaje de bienvenida en consola (sin pistas)
   console.log(
     "%c[PROTOCOLO SENTINEL - SEGURIDAD INFORMÁTICA]",
     "color: #10b981; font-size: 18px; font-weight: bold; background: #0f172a; padding: 8px 12px; border: 1px solid #10b981; border-radius: 4px;"
-  );
-  console.log(
-    "%c¡Excelente iniciativa analizando la consola de desarrollador (F12)!",
-    "color: #38bdf8; font-size: 13px; font-weight: bold;"
-  );
-  console.log(
-    "%c>>> CLAVE DE LA CASILLA 2: %cDEV_KEY_F12_2026",
-    "color: #94a3b8; font-size: 13px;",
-    "color: #00ff66; font-size: 14px; font-weight: bold; background: #1e293b; padding: 2px 6px; border-radius: 3px;"
   );
   console.log(
     "%cAutores del Reto: Ángel & Josué | Evaluación: Previo 2",
