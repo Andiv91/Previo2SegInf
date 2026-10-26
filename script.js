@@ -16,14 +16,6 @@ const VALID_HASHES = {
   ]
 };
 
-// Fallbacks directos para compatibilidad total
-const DIRECT_ANSWERS = {
-  1: ["PREVIO2"],
-  2: ["DEV_KEY_F12_2026"],
-  3: ["EXIF_FORENSE_2026", "METADATA_NODE_77"],
-  4: ["HACK", "FLAG"]
-};
-
 // Estado de cada una de las 4 casillas
 const challengeState = {
   1: false,
@@ -126,8 +118,7 @@ async function checkAnswer(challengeId) {
   }
   
   const computedHash = await sha256(rawValue);
-  const isValid = (computedHash && VALID_HASHES[challengeId].includes(computedHash)) || 
-                  DIRECT_ANSWERS[challengeId].includes(rawValue);
+  const isValid = computedHash && VALID_HASHES[challengeId].includes(computedHash);
   
   if (isValid) {
     challengeState[challengeId] = true;

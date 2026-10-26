@@ -2,7 +2,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ExifTags import TAGS
 
-assets_dir = r"C:\Users\mater\Documents\TrabajosWeb\SegInform\assets"
+assets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 os.makedirs(assets_dir, exist_ok=True)
 img_path = os.path.join(assets_dir, "evidencia_lab.jpg")
 
@@ -38,30 +38,18 @@ draw.text((65, 270), "Mensaje Interceptado en el Bus de Datos:", fill=(180, 240,
 draw.text((100, 300), "CRIPTOGRAMA = \"VOKC\"", fill=(255, 215, 0))
 draw.text((65, 345), "Relacion Matematica:", fill=(140, 165, 190))
 draw.text((65, 370), "C = K * P (mod 26)  ===>  P = K^-1 * C (mod 26)", fill=(255, 255, 255))
-draw.text((65, 400), "Pista: det(K) = 15 - 6 = 9. Inverso modular: 9 * 3 = 27 = 1 mod 26", fill=(0, 220, 255))
 
 # Box 2: Node Status & Incident Logs
 draw.rectangle([(610, 110), (1155, 440)], outline=(255, 75, 100), fill=(45, 10, 20), width=2)
 draw.text((630, 125), "[REGISTRO FORENSE - ESTADO DE LOS 4 NODOS]", fill=(255, 110, 130))
-draw.text((630, 165), "NODO 1 (Acceso): ....... [ ACTIVO - IDENTIFICADOR PREVIO ]", fill=(255, 255, 255))
+draw.text((630, 165), "NODO 1 (Acceso): ....... [ ACTIVO ]", fill=(255, 255, 255))
 draw.text((630, 200), "NODO 2 (Fuente): ....... [ AUDITADO EN COMENTARIOS DOM ]", fill=(255, 255, 255))
-draw.text((630, 235), "NODO 3 (Metadatos): .... [ OCULTO EN CABECERAS EXIF ]", fill=(255, 215, 0))
+draw.text((630, 235), "NODO 3 (Metadatos): .... [ PENDIENTE DE ANALISIS ]", fill=(255, 215, 0))
 draw.text((630, 270), "NODO 4 (Cripto): ....... [ PENDIENTE DE DESCRIPCIÓN: VOKC ]", fill=(255, 75, 100))
-draw.text((630, 325), "\"El ojo inexperto solo analiza los pixeles...", fill=(220, 230, 240))
-draw.text((630, 355), " el perito forense examina las propiedades y metadatos", fill=(220, 230, 240))
-draw.text((630, 385), " del archivo de imagen descargado.\"", fill=(220, 230, 240))
 
 # Box 3: Forensic Architecture & Chain
 draw.rectangle([(45, 470), (1155, 750)], outline=(100, 140, 180), fill=(15, 25, 45), width=2)
 draw.text((65, 490), "[CADENA DE SEGURIDAD CRIPTOGRAFICA - SECUENCIA DE RESOLUCION]", fill=(0, 220, 255))
-draw.text((65, 525), "[1. PREVIO2]  ===>  [2. INSPECTOR F12]  ===>  [3. EXIF FORENSE]  ===>  [4. CIFRADO HILL]", fill=(255, 255, 255))
-
-draw.text((65, 570), "INSTRUCCION PARA EL NODO 3:", fill=(255, 215, 0))
-draw.text((65, 600), "- Descarga esta imagen (.jpg) a tu computador.", fill=(200, 220, 240))
-draw.text((65, 625), "- En Windows: Clic derecho -> Propiedades -> Pestana Detalles.", fill=(200, 220, 240))
-draw.text((65, 650), "- En Linux / Mac / Web: Usa 'exiftool', 'strings' o un visor EXIF en linea.", fill=(200, 220, 240))
-draw.text((65, 675), "- Busca el campo 'Descripcion', 'Comentarios' o 'Autor' para extraer la clave.", fill=(0, 255, 157))
-
 draw.text((65, 715), "HASH SHA-256 INTEGRIDAD: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", fill=(100, 130, 160))
 
 # Prepare EXIF tags

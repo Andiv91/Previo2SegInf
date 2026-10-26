@@ -60,23 +60,16 @@ if (process.env.DATABASE_URL) {
 
 // Hashes oficiales de validación
 const TARGET_HASHES = {
-  1: ["44298a92b897ce38aaa79c49c4995fb7f834da2f639cb7b59061632206ec7296"], // PREVIO2
+  1: ["44298a92b897ce38aaa79c49c4995fb7f834da2f639cb7b59061632206ec7296"],
   2: ["f702c2ea8122e9b588d2ecbeb313300a6153a21ad0f4bdc8a6acdd8e36a4b6cd"], // DEV_KEY_F12_2026
   3: [
-    "83772f07995a63edcc7f4249002cc2326075638887b8c691f4515c430174efda", // EXIF_FORENSE_2026
-    "8dec96896d893c7bfef3b467c2bd3d3464afce51b9c65b7aac3237361dc48f77"  // METADATA_NODE_77
+    "83772f07995a63edcc7f4249002cc2326075638887b8c691f4515c430174efda",
+    "8dec96896d893c7bfef3b467c2bd3d3464afce51b9c65b7aac3237361dc48f77"
   ],
   4: [
-    "064866d6167ab12bacb2637bfe8c809372f3069fd075e1ccb3dd5425d364d137", // HACK
-    "6a1e963371a64b32aff302ef7f3a7d6df8df903fce10f3db6ee918f18ac11f2a"  // FLAG
+    "064866d6167ab12bacb2637bfe8c809372f3069fd075e1ccb3dd5425d364d137",
+    "6a1e963371a64b32aff302ef7f3a7d6df8df903fce10f3db6ee918f18ac11f2a"
   ]
-};
-
-const DIRECT_ANSWERS = {
-  1: ["PREVIO2"],
-  2: ["DEV_KEY_F12_2026"],
-  3: ["EXIF_FORENSE_2026", "METADATA_NODE_77"],
-  4: ["HACK", "FLAG"]
 };
 
 // ENDPOINTS API
@@ -112,9 +105,7 @@ app.post('/api/verify', async (req, res) => {
   const cleanAnswer = String(answer).trim().toUpperCase();
   const hash = crypto.createHash('sha256').update(cleanAnswer).digest('hex');
 
-  const isValid = 
-    (TARGET_HASHES[challengeId] && TARGET_HASHES[challengeId].includes(hash)) ||
-    (DIRECT_ANSWERS[challengeId] && DIRECT_ANSWERS[challengeId].includes(cleanAnswer));
+  const isValid = TARGET_HASHES[challengeId] && TARGET_HASHES[challengeId].includes(hash);
 
   // Registrar intento en Neon DB
   if (pool) {
